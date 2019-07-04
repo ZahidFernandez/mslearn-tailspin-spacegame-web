@@ -10,7 +10,11 @@ variables:
 
 steps:
 - task: DotNetCoreInstaller@0
+<<<<<<< HEAD
   displayName: 'Use .NET Core SDK $(dotnetSdkVersion)'
+=======
+  displayName: 'Use .NET Core $(dotnetSdkVersion)'
+>>>>>>> origin/master
   inputs:
     version: '$(dotnetSdkVersion)'
 
@@ -28,13 +32,18 @@ steps:
 - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
   displayName: 'Write build info'
   workingDirectory: $(wwwrootDir)
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> origin/master
 - task: DotNetCoreCLI@2
   displayName: 'Restore project dependencies'
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
 
+<<<<<<< HEAD
 - task: SonarCloudPrepare@1
   displayName: 'Prepare SonarCloud analysis'
   inputs:
@@ -54,10 +63,13 @@ steps:
       eq(variables['System.PullRequest.TargetBranch'], 'master')
     )
 
+=======
+>>>>>>> origin/master
 - task: DotNetCoreCLI@2
   displayName: 'Build the project - $(buildConfiguration)'
   inputs:
     command: 'build'
+<<<<<<< HEAD
     arguments: '--no-restore --configuration $(buildConfiguration)'
     projects: '**/*.csproj'
 
@@ -107,6 +119,12 @@ steps:
     summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
 
 - task: DotNetCoreCLI@2
+=======
+    arguments: '--no-restore --configuration - $(buildConfiguration)'
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+>>>>>>> origin/master
   displayName: 'Publish the project - $(buildConfiguration)'
   inputs:
     command: 'publish'
